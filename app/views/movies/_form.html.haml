@@ -1,0 +1,14 @@
+-# frozen_string_literal: true
+= simple_form_for(@movie) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  .form-inputs
+    = f.input :name
+    = f.input :genre
+    = f.input :date_in
+    = f.input :date_out
+    = f.input :duration
+
+  .form-actions
+    = f.button :submit

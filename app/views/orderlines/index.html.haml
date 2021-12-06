@@ -1,0 +1,27 @@
+%h1 Listing orderlines
+
+%table
+  %thead
+    %tr
+      %th Order
+      %th Product
+      %th Quantity
+      %th Price
+      %th
+      %th
+      %th
+
+  %tbody
+    - @orderlines.each do |orderline|
+      %tr
+        %td= orderline.order.id
+        %td= orderline.product.id
+        %td= orderline.quantity
+        %td= orderline.price
+        %td= link_to 'Show', orderline
+        %td= link_to 'Edit', edit_orderline_path(orderline)
+        %td= link_to 'Destroy', orderline, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Orderline', new_orderline_path
