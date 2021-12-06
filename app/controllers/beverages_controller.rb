@@ -50,6 +50,7 @@ class BeveragesController < ApplicationController
 
   # DELETE /beverages/1 or /beverages/1.json
   def destroy
+    Product.destroy(@beverage.product.id)
     @beverage.destroy
     respond_to do |format|
       format.html { redirect_to beverages_url, notice: "Beverage was successfully destroyed." }
