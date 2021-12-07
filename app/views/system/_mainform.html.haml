@@ -1,0 +1,14 @@
+= form_with do |form| ;
+  
+
+  = form.label :username, "Username" ;
+  .col-xs-12.col-md-6.mt-1 
+    = form.text_field :username ;
+
+  = form.label :password, "Password" ;
+  .col-xs-12.col-md-6.mt-1 
+    = form.password_field :password ;
+  %br
+
+  .actions
+    = form.submit "Login" ,class:"btn btn btn-primary" ;
