@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Timetable:
+  = "Movie:#{Movie.find(@ticket.timetable.movie_id).name} Theater:#{Theater.find(@ticket.timetable.theater_id).name} Start:#{@ticket.timetable.datetime_start}"
+%p
+  %b Chair:
+  = "#{@ticket.chair.row}#{@ticket.chair.seat} Theater:#{Theater.find(@ticket.chair.theater_id).name}"
+
+= link_to 'Edit', edit_ticket_path(@ticket)
+\|
+= link_to 'Back', tickets_path

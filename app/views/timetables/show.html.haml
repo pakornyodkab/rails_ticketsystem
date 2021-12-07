@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Datetime start:
+  = @timetable.datetime_start
+%p
+  %b Datetimestop:
+  = @timetable.datetimestop
+%p
+  %b Movie:
+  = @timetable.movie.name
+%p
+  %b Theater:
+  = @timetable.theater.name
+
+= link_to 'Edit', edit_timetable_path(@timetable)
+\|
+= link_to 'Back', timetables_path

@@ -1,0 +1,27 @@
+%h1 Listing timetables
+
+%table
+  %thead
+    %tr
+      %th Datetime start
+      %th Datetimestop
+      %th Movie
+      %th Theater
+      %th
+      %th
+      %th
+
+  %tbody
+    - @timetables.each do |timetable|
+      %tr
+        %td= timetable.datetime_start
+        %td= timetable.datetimestop
+        %td= timetable.movie.name
+        %td= timetable.theater.name
+        %td= link_to 'Show', timetable
+        %td= link_to 'Edit', edit_timetable_path(timetable)
+        %td= link_to 'Destroy', timetable, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Timetable', new_timetable_path

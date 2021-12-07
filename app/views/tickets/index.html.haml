@@ -1,0 +1,23 @@
+%h1 Listing tickets
+
+%table
+  %thead
+    %tr
+      %th Timetable
+      %th Chair
+      %th
+      %th
+      %th
+
+  %tbody
+    - @tickets.each do |ticket|
+      %tr
+        %td= "Movie:#{Movie.find(ticket.timetable.movie_id).name} Theater:#{Theater.find(ticket.timetable.theater_id).name} Start:#{ticket.timetable.datetime_start}"
+        %td= "#{ticket.chair.row}#{ticket.chair.seat} Theater:#{Theater.find(ticket.chair.theater_id).name}"
+        %td= link_to 'Show', ticket
+        %td= link_to 'Edit', edit_ticket_path(ticket)
+        %td= link_to 'Destroy', ticket, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Ticket', new_ticket_path

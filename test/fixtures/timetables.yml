@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  datetime_start: 2021-12-07 14:51:18
+  datetimestop: 2021-12-07 14:51:18
+  movie: one
+  theater: one
+
+two:
+  datetime_start: 2021-12-07 14:51:18
+  datetimestop: 2021-12-07 14:51:18
+  movie: two
+  theater: two
