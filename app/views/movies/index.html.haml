@@ -8,6 +8,8 @@
       %th Date in
       %th Date out
       %th Duration
+      %th Imagelink
+      %th Trailerlink
       %th
       %th
       %th
@@ -20,6 +22,8 @@
         %td= movie.date_in
         %td= movie.date_out
         %td= movie.duration
+        %td= movie.imagelink
+        %td= movie.trailerlink
         %td= link_to 'Show', movie
         %td= link_to 'Edit', edit_movie_path(movie)
         %td= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' }

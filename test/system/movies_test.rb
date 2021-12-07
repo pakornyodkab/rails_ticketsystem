@@ -18,7 +18,9 @@ class MoviesTest < ApplicationSystemTestCase
     fill_in "Date out", with: @movie.date_out
     fill_in "Duration", with: @movie.duration
     fill_in "Genre", with: @movie.genre
+    fill_in "Imagelink", with: @movie.imagelink
     fill_in "Name", with: @movie.name
+    fill_in "Trailerlink", with: @movie.trailerlink
     click_on "Create Movie"
 
     assert_text "Movie was successfully created"
@@ -33,7 +35,9 @@ class MoviesTest < ApplicationSystemTestCase
     fill_in "Date out", with: @movie.date_out
     fill_in "Duration", with: @movie.duration
     fill_in "Genre", with: @movie.genre
+    fill_in "Imagelink", with: @movie.imagelink
     fill_in "Name", with: @movie.name
+    fill_in "Trailerlink", with: @movie.trailerlink
     click_on "Update Movie"
 
     assert_text "Movie was successfully updated"

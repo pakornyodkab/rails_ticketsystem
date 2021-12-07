@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
+  resources :movies
   resources :chairs
   resources :theaters
-  resources :movies
   resources :orderlines
   resources :orders
   resources :beverages

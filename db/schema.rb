@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_06_183641) do
+ActiveRecord::Schema.define(version: 2021_12_07_073336) do
 
   create_table "beverages", force: :cascade do |t|
     t.string "name"
@@ -50,9 +50,11 @@ ActiveRecord::Schema.define(version: 2021_12_06_183641) do
   create_table "movies", force: :cascade do |t|
     t.string "name"
     t.string "genre"
-    t.datetime "date_in"
-    t.datetime "date_out"
+    t.date "date_in"
+    t.date "date_out"
     t.integer "duration"
+    t.string "imagelink"
+    t.string "trailerlink"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

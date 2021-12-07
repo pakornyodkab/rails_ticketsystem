@@ -3,13 +3,17 @@
 one:
   name: MyString
   genre: MyString
-  date_in: 2021-12-07 00:56:50
-  date_out: 2021-12-07 00:56:50
+  date_in: 2021-12-07
+  date_out: 2021-12-07
   duration: 1
+  imagelink: MyString
+  trailerlink: MyString
 
 two:
   name: MyString
   genre: MyString
-  date_in: 2021-12-07 00:56:50
-  date_out: 2021-12-07 00:56:50
+  date_in: 2021-12-07
+  date_out: 2021-12-07
   duration: 1
+  imagelink: MyString
+  trailerlink: MyString
