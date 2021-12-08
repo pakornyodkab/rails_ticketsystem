@@ -8,18 +8,34 @@ class SystemController < ApplicationController
   end
 
   def createuser
-    @user = User.new(user_params)
+    u = user_params
+    @user = User.new(username:u[:username],firstname:u[:firstname] ,lastname:u[:lastname] ,password:u[:password])
+
+    password = u[:password]
+    confirm_password = u[:confirm_password]
+
+    @correctpass = true
+
+    if (!confirm_password.eql?(password))
+      @correctpass = false
+    end
 
     respond_to do |format|
-      if @user.save
+      if (@correctpass && @user.save)
         Inventory.create(user_id:@user.id)
-        format.html { redirect_to @user, notice: "User was successfully created." }
+        format.html { redirect_to main_path, notice: "User was successfully created." }
         format.json { render :show, status: :created, location: @user }
       else
-        format.html { render :register, status: :unprocessable_entity }
+        @alertword = (@correctpass)? "" : "Password and confirm_password are not equal"
+        @user.valid?
+        if (!@correctpass)
+          @user.errors[:base] << "Password and confirm_password are not equal"
+        end
+        format.html { render "register", status: :unprocessable_entity }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   def checklogin
@@ -59,7 +75,7 @@ class SystemController < ApplicationController
     end
 
     def user_params
-      params.require(:user).permit(:username, :password, :firstname, :lastname)
+      params.require(:user).permit(:username, :password, :firstname, :lastname ,:confirm_password)
     end
 
 end
