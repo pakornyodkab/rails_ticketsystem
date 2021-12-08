@@ -1,0 +1,13 @@
+= form_with do |form| ;
+  
+  -@timetable.availablechair_id.each do |chair_id|
+    -chair = Chair.find(chair_id)
+    .col-xs-12.col-md-6.mt-1
+      = form.label :seat, "#{chair.row}#{chair.seat}" ;
+      = form.check_box :seat ,{multiple:true},chair.id,false
+  
+
+  %br
+
+  .actions
+    = form.submit "Buy" ,class:"btn btn btn-primary" ;

@@ -70,6 +70,42 @@ class SystemController < ApplicationController
     @movie_theater = @movie.theatershow(@movie_id)
   end
 
+  def selectseat
+    @timetable_id = params[:timetable_id]
+    @timetable = Timetable.find(@timetable_id)
+    @movie = Movie.find(@timetable.movie_id)
+    @theater = Theater.find(@timetable.theater_id)
+  end
+
+  def maketicket
+    @chairs_input = params[:seat]
+    @timetable_id = params[:timetable_id]
+    @chairs_id = @chairs_input.map{ |chair| chair.to_i}
+
+    # create ticket for each chair
+    tickets_id = []
+    @chairs_id.each do |chair_id|
+      t = Ticket.create(chair_id:chair_id ,timetable_id:@timetable_id)
+      tickets_id.append(t.id)
+    end
+
+    # create product for each ticket
+    products_id = []
+    tickets_id.each do |ticket_id|
+      pr = Product.create(productable_type:"Ticket" , productable_id:ticket_id)
+      products_id.append(pr.id)
+    end
+
+    #create order for insert orderline
+    @order = Order.create(user_id:session[:user_id])
+
+    #create orderline for each product
+    products_id.each do |product_id|
+      Orderline.create(order_id:@order.id , product_id:product_id ,quantity:1 ,price:Product.find(product_id).productable.chair.price )
+    end
+
+  end
+
 
   private
     def logged_in

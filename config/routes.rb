@@ -16,5 +16,7 @@ Rails.application.routes.draw do
   post 'main' ,to:"system#checklogin"
   get 'movieindex' ,to:"system#movieindex"
   get 'movietimetable/:movie_id' ,to:"system#movietimetable" ,as:"movietimetable_sys"
+  get 'selectseat/:timetable_id' ,to:"system#selectseat" ,as:"selectseat"
+  post 'selectseat/:timetable_id' ,to:"system#maketicket"
 
 end

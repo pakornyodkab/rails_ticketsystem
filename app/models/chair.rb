@@ -5,4 +5,5 @@ class Chair < ApplicationRecord
   def to_label
     "#{row}#{seat} Theater:#{Theater.find(theater_id).name}"
   end
+
 end

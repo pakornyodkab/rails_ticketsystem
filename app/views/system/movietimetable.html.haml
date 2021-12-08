@@ -1,5 +1,4 @@
 .container
-
 	%h3 Movie : #{@movie_name}
 
 	.div{style:"display:flex; flex-direction: row; justify-content: center; align-items: center"}
@@ -19,7 +18,7 @@
 				.card-body
 					-timetables = Timetable.findtodaytimetable(@movie.id,theater.id)
 					-timetables.each do |timetable|
-						%a.btn.btn-primary{:href => "#"} #{timetable.datetime_start}
+						=link_to "#{timetable.datetime_start}" ,selectseat_path(timetable.id) ,class:"btn btn-primary" ,style:"color:white"
 		%br
 
 

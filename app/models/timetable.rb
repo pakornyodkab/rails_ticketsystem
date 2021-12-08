@@ -10,4 +10,19 @@ class Timetable < ApplicationRecord
   def self.findtodaytimetable(movieID,theaterID)
     return Timetable.where(movie_id:movieID,theater_id:theaterID,datetime_start:Date.today.all_day)
   end
+
+  def usedchair_id
+    usedchair_id = []
+    all_tickets = self.tickets
+    all_tickets.each do |ticket|
+      usedchair_id.append(ticket.chair.id)
+    end 
+    return usedchair_id
+  end
+
+  def availablechair_id
+    return self.theater.chairs.map{|chair| chair.id} - self.usedchair_id
+  end
+
+  
 end
