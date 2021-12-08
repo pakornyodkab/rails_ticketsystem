@@ -15,5 +15,6 @@ Rails.application.routes.draw do
   post 'register',to:"system#createuser"
   post 'main' ,to:"system#checklogin"
   get 'movieindex' ,to:"system#movieindex"
+  get 'movietimetable/:movie_id' ,to:"system#movietimetable" ,as:"movietimetable_sys"
 
 end

@@ -1,0 +1,36 @@
+.container
+
+	%h3 Movie : #{@movie_name}
+
+	.div{style:"display:flex; flex-direction: row; justify-content: center; align-items: center"}
+		%img.img-thumbnail{src:@movie.imagelink,width:"232",height:"367",style:"margin-right:5em"}
+		%iframe{:allow => "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", :allowfullscreen => "", :frameborder => "0", :height => "350", :src => @movie.trailerlink, :title => "YouTube video player", :width => "800"}
+	%br
+
+	%p.text-left{class:"fs-6"} Duration: #{@movie.duration}
+	%p.text-left{class:"fs-6"} Genre: #{@movie.genre}
+	%p.text-left{class:"fs-6"} Date in: #{@movie.date_in}
+	%p.text-left{class:"fs-6"} Date out: #{@movie.date_out}
+
+	-@movie_theater.each do |theater|
+		.card
+			.card-header
+				#{theater.name}
+				.card-body
+					-timetables = Timetable.findtodaytimetable(@movie.id,theater.id)
+					-timetables.each do |timetable|
+						%a.btn.btn-primary{:href => "#"} #{timetable.datetime_start}
+		%br
+
+
+
+	
+		
+
+
+
+
+
+	
+
+

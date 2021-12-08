@@ -5,7 +5,6 @@
 
 	- @movie_list.each do |movie|
 		.figure.px-2
-			/ have to change main_path to sth else
-			=link_to main_path do 
+			=link_to movietimetable_sys_path(movie.id) do 
 				= image_tag "#{movie.imagelink}" ,class:"img-thumbnail",width:"400px",height:"400px"
 			%figcaption{class:"figure-caption"} Movie : #{movie.name}

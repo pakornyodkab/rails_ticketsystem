@@ -21,6 +21,21 @@
     %link{:href => "https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.css", :rel => "stylesheet", :type => "text/css"}/
     %script{:src => "https://cdn.datatables.net/v/bs5/dt-1.11.3/datatables.min.js", :type => "text/javascript"}
   %body
+    %nav.navbar.navbar-expand-lg.navbar-light.bg-info
+      .container-fluid
+        %a.navbar-brand{:href => "/main"} Minor
+        %button.navbar-toggler{"aria-controls" => "navbarNav", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-bs-target" => "#navbarNav", "data-bs-toggle" => "collapse", :type => "button"}
+          %span.navbar-toggler-icon
+        #navbarNav.collapse.navbar-collapse
+          %ul.navbar-nav
+            %li.nav-item
+              %a.nav-link.active{"aria-current" => "page", :href => "/movieindex"} Home
+            %li.nav-item
+              %a.nav-link{:href => "#"} Inventory
+          %ul.navbar-nav
+            %li.nav-item
+              %a.nav-link{:href => "/main",style:"float:right"} Logout
+              
     .container
       = yield
     

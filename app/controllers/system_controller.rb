@@ -1,4 +1,5 @@
 class SystemController < ApplicationController
+  before_action :logged_in ,only:%i[ movieindex]
   def main
     session[:user_id] = nil
   end
@@ -39,6 +40,7 @@ class SystemController < ApplicationController
   end
 
   def checklogin
+    # check that username and password are correct
     @loginUsername = params[:username]
     @loginPassword = params[:password]
     @usermatch = false
@@ -59,6 +61,13 @@ class SystemController < ApplicationController
   def movieindex
     @username = User.find(session[:user_id]).username
     @movie_list = Movie.nowshowingmovies
+  end
+
+  def movietimetable
+    @movie_id = params[:movie_id]
+    @movie = Movie.find(@movie_id)
+    @movie_name = @movie.name
+    @movie_theater = @movie.theatershow(@movie_id)
   end
 
 
