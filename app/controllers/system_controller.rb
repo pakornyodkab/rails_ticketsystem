@@ -233,6 +233,12 @@ class SystemController < ApplicationController
     @products = @inventory.products
   end
 
+  def beverage_only
+    @order = Order.create(user_id:session[:user_id])
+    @order_id = @order.id
+    @all_beverages = Beverage.all
+  end
+
 
   private
     def logged_in

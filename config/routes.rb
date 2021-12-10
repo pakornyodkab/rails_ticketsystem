@@ -27,5 +27,7 @@ Rails.application.routes.draw do
   get 'putorder_itemtoinventory/:order_id' ,to:"system#putorder_itemtoinventory" ,as:"putorder_itemtoinventory"
   get 'ordercomplete/:order_id' ,to:"system#ordercomplete" ,as:"ordercomplete"
   get 'inventorypage' ,to:"system#inventorypage" ,as:"inventorypage"
+  get 'beverage_only' ,to:"system#beverage_only" ,as:"beverage_only"
+  post 'beverage_only' ,to: "system#sendbeverage_ticket"
 
 end
