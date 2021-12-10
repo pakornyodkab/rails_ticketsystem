@@ -1,5 +1,5 @@
 class SystemController < ApplicationController
-  before_action :logged_in ,only:%i[ movieindex]
+  before_action :logged_in ,only:%i[ movieindex movietimetable selectseat maketicket showticketorder beverage_ticket]
   def main
     session[:user_id] = nil
   end
@@ -102,6 +102,92 @@ class SystemController < ApplicationController
     #create orderline for each product
     products_id.each do |product_id|
       Orderline.create(order_id:@order.id , product_id:product_id ,quantity:1 ,price:Product.find(product_id).productable.chair.price )
+    end
+
+    respond_to do |format|
+      format.html { redirect_to showticketorder_path(@order.id) }
+    end
+
+  end
+
+  def showticketorder
+    order_id = params[:order_id]
+    @order = Order.find(order_id)
+  end
+
+  def beverage_ticket
+    @order_id = params[:order_id]
+    @all_beverages = Beverage.all
+  end
+
+  def sendbeverage_ticket
+    @quantity = params[:quantity]
+    @beverage_id = params[:beverage_id]
+    @order_id = params[:order_id].to_i
+    @order = Order.find(@order_id)
+    # puts "Popcorn #{@quantity}"
+    # puts "#{@beverage_id}"
+
+    for i in 1..@quantity.size do
+      quantity = @quantity[i].to_i
+      beverage_id = @beverage_id[i].to_i
+
+      if (quantity != 0)
+        beverage = Beverage.find(beverage_id)
+        product = beverage.product
+
+        Orderline.create(order_id:@order.id , product_id:product.id ,quantity:quantity ,price:beverage.price)
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to summaryorder_ticket_path(@order_id)}
+    end
+  end
+
+  def summaryorder_ticket
+    @order_id = params[:order_id]
+    @order = Order.find(@order_id)
+  end
+
+  def cancleorderline
+    orderline_id = params[:orderline_id]
+    orderline = Orderline.find(orderline_id)
+    order_id = orderline.order.id
+    product = orderline.product
+    Orderline.destroy(orderline_id)
+    if (product.productable_type.eql?("Ticket"))
+      ticket = product.productable
+      Product.destroy(product.id)
+      Ticket.destroy(ticket.id)
+    end
+    
+
+    respond_to do |format|
+      format.html { redirect_to summaryorder_ticket_path(order_id)}
+    end
+  end
+
+  def cancleorder
+    order_id = params[:order_id]
+    order = Order.find(order_id)
+
+    orderlines = order.orderlines
+    orderlines.each do |orderline|
+      product = orderline.product
+      orderline_id = orderline.id
+      Orderline.destroy(orderline_id)
+      if (product.productable_type.eql?("Ticket"))
+        ticket = product.productable
+        Product.destroy(product.id)
+        Ticket.destroy(ticket.id)
+      end
+      
+    end
+
+    Order.destroy(order_id)
+    respond_to do |format|
+      format.html { redirect_to movieindex_path ,alert:"Cancle order already"}
     end
 
   end

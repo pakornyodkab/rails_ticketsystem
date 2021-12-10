@@ -1,0 +1,39 @@
+.container
+	%h1 Ticket Order
+	- sumprice = 0
+
+	-@order.orderlines.each do |orderline|
+		.card
+			.card-header
+				Ticket
+				.card-body
+					- product = Product.find(orderline.product_id)
+					- ticket = product.productable
+					- chair = Chair.find(ticket.chair_id)
+					- timetable = Timetable.find(ticket.timetable_id)
+					- movie = Movie.find(timetable.movie_id)
+					- theater = Theater.find(timetable.theater_id)
+					.div{class:"d-flex justify-content-between"}
+						.div{style:"display:flex; flex-direction: row; justify-content: center; align-items: center"}
+							%img.img-thumbnail{src:movie.imagelink,width:"232",height:"367",style:"margin-right:5em"}
+							%div
+								%p.text-left{class:"fs-6"} Movie : #{movie.name}
+								%p.text-left{class:"fs-6"} Theater : #{theater.name} 
+								%p.text-left{class:"fs-6"} DateTime : #{timetable.datetime_start}
+								%p.text-left{class:"fs-6"} Chair : #{chair.row}#{chair.seat}
+								%p.text-left{class:"fs-6"} Chair Type : #{chair.chair_type}
+								%p.text-left{class:"fs-6"} Price : #{chair.price} THB
+
+						=link_to "X" ,cancleorderline_path(orderline.id),class:"btn btn-danger float-end" ,style:"color:white", confirm:"Are you sure?"
+					-sumprice += chair.price
+	%br
+	.div{class:"d-flex justify-content-between"}
+		%p.text-left{class:"fs-6"}  Total Price : #{sumprice}
+		.div
+			=link_to "Next" ,beverage_ticket_path(@order.id) ,class:"btn btn-primary float-end" ,style:"color:white"
+			=link_to "Cancle order" ,cancleorder_path(@order.id) ,class:"btn btn-danger float-end mx-2" ,style:"color:white"
+			
+
+
+
+

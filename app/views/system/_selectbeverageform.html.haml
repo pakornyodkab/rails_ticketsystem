@@ -1,0 +1,17 @@
+= form_with do |form| ;
+  
+  -@all_beverages.each do |beverage|
+    .col-xs-12.col-md-6.mt-1
+      = form.label :quantity ,"#{beverage.name}"
+      = form.number_field :quantity ,{multiple:true ,value:"0"}
+      = form.hidden_field:beverage_id ,{multiple:true , value:"#{beverage.id}"}
+
+  =form.hidden_field:order_id,value:"#{@order_id}" 
+  
+
+  %br
+
+  .actions
+    = form.submit "Buy" ,class:"btn btn btn-primary" ;
+
+

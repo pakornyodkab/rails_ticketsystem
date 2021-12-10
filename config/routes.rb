@@ -18,5 +18,11 @@ Rails.application.routes.draw do
   get 'movietimetable/:movie_id' ,to:"system#movietimetable" ,as:"movietimetable_sys"
   get 'selectseat/:timetable_id' ,to:"system#selectseat" ,as:"selectseat"
   post 'selectseat/:timetable_id' ,to:"system#maketicket"
+  get 'showticketorder/:order_id' ,to:"system#showticketorder" ,as:"showticketorder"
+  get 'beverage_ticket/:order_id' ,to: "system#beverage_ticket" ,as:"beverage_ticket"
+  post 'beverage_ticket/:order_id' ,to: "system#sendbeverage_ticket"
+  get 'summaryorder_ticket/:order_id' ,to:"system#summaryorder_ticket" ,as:"summaryorder_ticket"
+  get 'cancleorderline/:orderline_id' ,to:"system#cancleorderline" ,as:"cancleorderline"
+  get 'cancleorder/:order_id' ,to:"system#cancleorder" ,as:"cancleorder"
 
 end
