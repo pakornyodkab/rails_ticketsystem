@@ -24,5 +24,8 @@ Rails.application.routes.draw do
   get 'summaryorder_ticket/:order_id' ,to:"system#summaryorder_ticket" ,as:"summaryorder_ticket"
   get 'cancleorderline/:orderline_id' ,to:"system#cancleorderline" ,as:"cancleorderline"
   get 'cancleorder/:order_id' ,to:"system#cancleorder" ,as:"cancleorder"
+  get 'putorder_itemtoinventory/:order_id' ,to:"system#putorder_itemtoinventory" ,as:"putorder_itemtoinventory"
+  get 'ordercomplete/:order_id' ,to:"system#ordercomplete" ,as:"ordercomplete"
+  get 'inventorypage' ,to:"system#inventorypage" ,as:"inventorypage"
 
 end

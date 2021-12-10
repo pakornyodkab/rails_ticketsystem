@@ -28,7 +28,7 @@
 					-sumprice += chair.price
 	%br
 	.div{class:"d-flex justify-content-between"}
-		%p.text-left{class:"fs-6"}  Total Price : #{sumprice}
+		%p.text-left{class:"fs-6"}  Total Price : #{sumprice} THB
 		.div
 			=link_to "Next" ,beverage_ticket_path(@order.id) ,class:"btn btn-primary float-end" ,style:"color:white"
 			=link_to "Cancle order" ,cancleorder_path(@order.id) ,class:"btn btn-danger float-end mx-2" ,style:"color:white"

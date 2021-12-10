@@ -31,10 +31,11 @@
             %li.nav-item
               %a.nav-link.active{"aria-current" => "page", :href => "/movieindex"} Home
             %li.nav-item
-              %a.nav-link{:href => "#"} Inventory
-        %ul.navbar-nav
+              %a.nav-link{:href => "/inventorypage"} Inventory
+        %ul.navbar-nav{style:"display:inline-block"}
           %li.nav-item
             %a.nav-link{:href => "/main",style:"float:right"} Logout
+          
               
     .container
       = yield

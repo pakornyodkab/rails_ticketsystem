@@ -1,5 +1,5 @@
 class SystemController < ApplicationController
-  before_action :logged_in ,only:%i[ movieindex movietimetable selectseat maketicket showticketorder beverage_ticket]
+  before_action :logged_in ,except:%i[ main register createuser checklogin]
   def main
     session[:user_id] = nil
   end
@@ -128,7 +128,9 @@ class SystemController < ApplicationController
     # puts "Popcorn #{@quantity}"
     # puts "#{@beverage_id}"
 
-    for i in 1..@quantity.size do
+    i = 0
+
+    while i < @quantity.size do
       quantity = @quantity[i].to_i
       beverage_id = @beverage_id[i].to_i
 
@@ -138,6 +140,7 @@ class SystemController < ApplicationController
 
         Orderline.create(order_id:@order.id , product_id:product.id ,quantity:quantity ,price:beverage.price)
       end
+      i += 1
     end
 
     respond_to do |format|
@@ -190,6 +193,44 @@ class SystemController < ApplicationController
       format.html { redirect_to movieindex_path ,alert:"Cancle order already"}
     end
 
+  end
+
+  def putorder_itemtoinventory
+    order_id = params[:order_id]
+    order = Order.find(order_id)
+    inventory = Inventory.find_by(user_id:session[:user_id])
+    inventory_id = inventory.id
+    orderlines = order.orderlines
+    orderlines.each do |orderline|
+      product = orderline.product
+      product_id = product.id
+      quantity = orderline.quantity
+      if(Inventoryproduct.find_by(inventory_id:inventory_id ,product_id:product_id))
+        ip = Inventoryproduct.find_by(inventory_id:inventory_id ,product_id:product_id)
+        ip_quantity_old = ip.quantity
+        ip_quantity_new = ip_quantity_old + quantity
+        ip.update(quantity:ip_quantity_new)
+      else
+        Inventoryproduct.create(inventory_id:inventory_id,product_id:product_id,quantity:quantity)
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to ordercomplete_path(order_id) ,notice:"Put item to inventory already"}
+    end
+
+  end
+
+  def ordercomplete
+    @order_id = params[:order_id]
+    @order = Order.find(@order_id)
+  end
+
+  def inventorypage
+    @user_id = session[:user_id]
+    @user = User.find(@user_id)
+    @inventory = Inventory.find_by(user_id:@user_id)
+    @products = @inventory.products
   end
 
 

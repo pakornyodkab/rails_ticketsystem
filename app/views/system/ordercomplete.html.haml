@@ -1,5 +1,8 @@
 .container
-	%h1 Summary order
+	%h1.text-center Order Complete
+	%p#alert.text-danger= alert   
+	%p#notice.text-success #{notice}
+
 	-sumprice = 0
 	-@order.orderlines.each do |orderline|
 		- product = Product.find(orderline.product_id)
@@ -23,7 +26,6 @@
 									%p.text-left{class:"fs-6"} Chair : #{chair.row}#{chair.seat}
 									%p.text-left{class:"fs-6"} Chair Type : #{chair.chair_type}
 									%p.text-left{class:"fs-6"} Price : #{chair.price} THB
-							=link_to "X" ,cancleorderline_path(orderline.id),class:"btn btn-danger float-end" ,style:"color:white", confirm:"Are you sure?"
 						-sumprice += chair.price
 
 		- if(product.productable_type.eql?("Beverage"))
@@ -36,20 +38,15 @@
 						.div{class:"d-flex justify-content-between"}
 							.div
 								%p.text-left{class:"fs-6"} Name : #{beverage.name}
-								%p.text-left{class:"fs-6"} Price : #{orderline.price}
+								%p.text-left{class:"fs-6"} Price : #{orderline.price} THB
 								%p.text-left{class:"fs-6"} Quantity : #{orderline.quantity}
 							%p.text-right{class:"fs-6"} Total price : #{orderline.price*orderline.quantity} THB
-							=link_to "X" ,cancleorderline_path(orderline.id),class:"btn btn-danger float-end" ,style:"color:white", confirm:"Are you sure?"
 						-sumprice += orderline.price*orderline.quantity
 		%br
 
 	.div{class:"d-flex justify-content-between"}
 		%p.text-left{class:"fs-6"}  Total Price : #{sumprice} THB
 		.div
-			=link_to "Confirm order" ,putorder_itemtoinventory_path(@order.id) ,class:"btn btn-primary float-end mx-2" ,style:"color:white"
+			=link_to "Go to inventory" , inventorypage_path  ,class:"btn btn-info float-end mx-2" ,style:"color:white"
+			=link_to "Back to Home" , movieindex_path  ,class:"btn btn-success float-end mx-2" ,style:"color:white"
 			
-			=link_to "Cancle order" ,cancleorder_path(@order.id) ,class:"btn btn-danger float-end" ,style:"color:white"
-
-
-
-								
