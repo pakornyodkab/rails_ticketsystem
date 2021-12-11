@@ -25,6 +25,13 @@ class TheatersController < ApplicationController
 
     respond_to do |format|
       if @theater.save
+        for i in 1..5 
+          Chair.create(row:"A",seat:"#{i}",price:250,chair_type:"Honeymooon",theater_id:@theater.id)
+        end
+        
+        for i in 1..5 
+          Chair.create(row:"B",seat:"#{i}",price:150,chair_type:"Normal",theater_id:@theater.id)
+        end
         format.html { redirect_to @theater, notice: "Theater was successfully created." }
         format.json { render :show, status: :created, location: @theater }
       else

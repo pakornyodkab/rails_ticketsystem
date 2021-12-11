@@ -7,3 +7,7 @@ one:
 two:
   name: MyString
   location: MyString
+
+t1:
+  name: IMAX Siam
+  location: Paragon

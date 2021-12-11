@@ -7,3 +7,7 @@ one:
 two:
   productable: two
   productable_type: Productable
+
+p1:
+  productable: b1
+  productable_type: Beverage

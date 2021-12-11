@@ -11,3 +11,9 @@ two:
   datetimestop: 2021-12-07 14:51:18
   movie: two
   theater: two
+
+tt1:
+  datetime_start: <%= DateTime.current() %>
+  datetimestop: <%= DateTime.current() + (3/24.0)%>
+  movie: m1
+  theater: t1

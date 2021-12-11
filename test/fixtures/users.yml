@@ -11,3 +11,9 @@ two:
   password_digest: MyString
   firstname: MyString
   lastname: MyString
+
+u1:
+  username: test
+  firstname: tester
+  lastname: tester
+  password_digest: <%= BCrypt::Password.create('123456') %>

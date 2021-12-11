@@ -7,3 +7,7 @@ one:
 two:
   name: MyString
   price: 1
+
+b1:
+  name: Salt Popcorn
+  price: 150

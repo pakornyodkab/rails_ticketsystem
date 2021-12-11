@@ -13,3 +13,10 @@ two:
   price: 1
   chair_type: MyString
   theater: two
+
+c1:
+  row: A
+  seat: 1
+  price: 250
+  chair_type: Honeymoon
+  theater: t1

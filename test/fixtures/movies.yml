@@ -17,3 +17,13 @@ two:
   duration: 1
   imagelink: MyString
   trailerlink: MyString
+
+m1:
+  name: Eternals
+  genre: Superhero
+  date_in: 2021-11-06
+  date_out: 2021-12-31
+  duration: 150
+  imagelink: https://cdn.majorcineplex.com/uploads/movie/2771/thumb_2771.jpg
+  trailerlink: https://www.youtube.com/embed/yucByCkg4O4
+
