@@ -1,15 +1,15 @@
 %h1 Listing orderlines
 
-%table
+%table{id:"orderlinetable" ,class:"table table-striped table-sm"}
   %thead
     %tr
       %th Order
       %th Product
       %th Quantity
       %th Price
-      %th
-      %th
-      %th
+      %th showbutton
+      %th editbutton
+      %th destroybutton
 
   %tbody
     - @orderlines.each do |orderline|
@@ -25,3 +25,9 @@
 %br
 
 = link_to 'New Orderline', new_orderline_path
+
+:javascript
+  console.log("Hello")
+  $(document).ready(function(){
+    $("#orderlinetable").DataTable({});
+  });

@@ -1,13 +1,13 @@
 %h1 Listing beverages
 
-%table
+%table{id:"beveragetable" ,class:"table table-striped table-sm"}
   %thead
     %tr
       %th Name
       %th Price
-      %th
-      %th
-      %th
+      %th showbutton
+      %th editbutton
+      %th destroybutton
 
   %tbody
     - @beverages.each do |beverage|
@@ -21,3 +21,9 @@
 %br
 
 = link_to 'New Beverage', new_beverage_path
+
+:javascript
+  console.log("Hello")
+  $(document).ready(function(){
+    var btable = $("#beveragetable").DataTable({});
+  });

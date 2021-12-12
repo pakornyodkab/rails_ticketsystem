@@ -1,6 +1,6 @@
 %h1 Listing movies
 
-%table
+%table{id:"movietable" ,class:"table table-striped table-sm"}
   %thead
     %tr
       %th Name
@@ -10,9 +10,9 @@
       %th Duration
       %th Imagelink
       %th Trailerlink
-      %th
-      %th
-      %th
+      %th showbutton
+      %th editbutton
+      %th destroybutton
 
   %tbody
     - @movies.each do |movie|
@@ -31,3 +31,11 @@
 %br
 
 = link_to 'New Movie', new_movie_path
+
+
+
+:javascript
+  console.log("Hello")
+  $(document).ready(function(){
+    $("#movietable").DataTable({});
+  });

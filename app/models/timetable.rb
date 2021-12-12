@@ -8,7 +8,7 @@ class Timetable < ApplicationRecord
   end
 
   def self.findtodaytimetable(movieID,theaterID)
-    return Timetable.where(movie_id:movieID,theater_id:theaterID,datetime_start:Date.today.all_day)
+    return Timetable.where(movie_id:movieID,theater_id:theaterID,datetime_start:Date.current.all_day)
   end
 
   def usedchair_id

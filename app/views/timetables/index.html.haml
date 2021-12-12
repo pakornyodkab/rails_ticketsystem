@@ -1,15 +1,15 @@
 %h1 Listing timetables
 
-%table
+%table{id:"timetables_table" ,class:"table table-striped table-sm"}
   %thead
     %tr
       %th Datetime start
       %th Datetimestop
       %th Movie
       %th Theater
-      %th
-      %th
-      %th
+      %th showbutton
+      %th editbutton
+      %th destroybutton
 
   %tbody
     - @timetables.each do |timetable|
@@ -25,3 +25,9 @@
 %br
 
 = link_to 'New Timetable', new_timetable_path
+
+:javascript
+  console.log("Hello")
+  $(document).ready(function(){
+    var tttable = $("#timetables_table").DataTable({});
+  });

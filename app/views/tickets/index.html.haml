@@ -1,13 +1,13 @@
 %h1 Listing tickets
 
-%table
+%table{id:"tickettable" ,class:"table table-striped table-sm"}
   %thead
     %tr
       %th Timetable
       %th Chair
-      %th
-      %th
-      %th
+      %th showbutton
+      %th editbutton
+      %th destroybutton
 
   %tbody
     - @tickets.each do |ticket|
@@ -21,3 +21,9 @@
 %br
 
 = link_to 'New Ticket', new_ticket_path
+
+:javascript
+  console.log("Hello")
+  $(document).ready(function(){
+    var ttable = $("#tickettable").DataTable({});
+  });
